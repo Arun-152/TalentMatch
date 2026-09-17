@@ -1,0 +1,77 @@
+# ─── Python / Django ─────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+
+# Virtual environments
+backend/venv/
+venv/
+.venv/
+env/
+ENV/
+
+# Django artefacts
+*.sqlite3
+*.sqlite3-journal
+backend/media/
+backend/staticfiles/
+backend/static_root/
+
+# Collected static (only if you run collectstatic)
+/static/
+
+# ─── Node / React / Vite ─────────────────────────────────────────
+node_modules/
+frontend/node_modules/
+
+# Production build output
+frontend/dist/
+frontend/.vite/
+
+# ─── Environment & Secrets ───────────────────────────────────────
+# Never commit secrets. Use .env.example to document required keys.
+.env
+.env.*
+!.env.example
+
+# ─── Editor / IDE ────────────────────────────────────────────────
+.vscode/
+.idea/
+*.suo
+*.user
+*.sublime-workspace
+*.sublime-project
+
+# ─── OS artefacts ────────────────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# ─── Logs & temp ─────────────────────────────────────────────────
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pip-log.txt
+pip-delete-this-directory.txt
+
+# ─── Coverage & test artefacts ───────────────────────────────────
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+*.cover
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# ─── NOT ignored (explicitly kept) ───────────────────────────────
+# Django migration files are source code — do NOT add migrations/ here.
+# Frontend source files are source code — do NOT add src/ here.
