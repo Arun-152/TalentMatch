@@ -13,6 +13,7 @@ import { useAsync } from '../hooks/useAsync';
 import Loader from '../components/Loader';
 import MatchDiagram from '../components/MatchDiagram';
 import SkillChip from '../components/SkillChip';
+import AtsReport from '../components/AtsReport';
 
 const AnalysisDetail = () => {
   const { id } = useParams();
@@ -47,8 +48,8 @@ const AnalysisDetail = () => {
 
   if (!analysis) return null;
 
-  const matchedNames = analysis.matched_skills.map(s => s.name);
-  const missingNames = analysis.missing_skills.map(s => s.name);
+  const matchedNames  = analysis.matched_skills.map(s => s.name);
+  const missingNames  = analysis.missing_skills.map(s => s.name);
   const isPerfectMatch = missingNames.length === 0;
   const hasImprovement = analysis.improvement_plan && analysis.improvement_plan.length > 0;
 
@@ -70,10 +71,10 @@ const AnalysisDetail = () => {
         </div>
       </div>
 
-      {/* ── Main two-column layout ── */}
+      {/* ── Main layout: diagram left, skill panels right ── */}
       <div className="analysis-layout">
 
-        {/* Left: Match diagram (the score IS this diagram) */}
+        {/* Left: Match diagram (score embedded inside) */}
         <aside className="diagram-panel" aria-label="Skill match diagram">
           <div className="diagram-panel-inner">
             <MatchDiagram
@@ -89,8 +90,8 @@ const AnalysisDetail = () => {
           </div>
         </aside>
 
-        {/* Right: Matched + Missing + Plan as one flowing panel */}
-        <main className="content-panel" aria-label="Skill breakdown">
+        {/* Right: Matched skills + Skills gap + ATS report */}
+        <main className="content-panel" aria-label="Analysis breakdown">
 
           {/* Matched Skills */}
           <section className="content-section" aria-label="Matched skills">
@@ -115,10 +116,9 @@ const AnalysisDetail = () => {
             )}
           </section>
 
-          {/* Missing Skills + Improvement Plan — grouped as one related block */}
+          {/* Skills Gap + Improvement Plan — grouped as one block */}
           {!isPerfectMatch && (
             <section className="content-section gap-section" aria-label="Skills gap and improvement plan">
-              {/* Missing header */}
               <div className="section-header">
                 <div className="section-icon section-icon-missing" aria-hidden="true">
                   <CircleDashed size={15} strokeWidth={2} />
@@ -135,7 +135,6 @@ const AnalysisDetail = () => {
                 ))}
               </div>
 
-              {/* Improvement plan flows directly under missing skills */}
               {(analysis.improvement_summary || hasImprovement) && (
                 <div className="plan-block">
                   <div className="plan-block-header">
@@ -180,6 +179,10 @@ const AnalysisDetail = () => {
               </div>
             </section>
           )}
+
+          {/* ATS Resume Check — always shown when ats_report is present */}
+          <AtsReport atsReport={analysis.ats_report} />
+
         </main>
       </div>
     </div>

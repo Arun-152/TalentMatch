@@ -1,6 +1,11 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
+/**
+ * AppHeader — sticky frosted navigation bar.
+ * History link has been removed; the app is now a single-flow tool
+ * (upload → analyze → result) with no shared listing.
+ */
 const AppHeader = () => (
   <header className="app-header">
     <Link to="/" className="wordmark" aria-label="TalentMatch AI — Home">
@@ -14,12 +19,6 @@ const AppHeader = () => (
         className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}
       >
         New Analysis
-      </NavLink>
-      <NavLink
-        to="/history"
-        className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}
-      >
-        History
       </NavLink>
     </nav>
   </header>
